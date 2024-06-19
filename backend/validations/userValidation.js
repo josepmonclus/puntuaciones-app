@@ -1,7 +1,5 @@
 const Joi = require('joi');
 
-//Validation schema for the request body
-
 const registerValidator = (data) => {
     const schema = Joi.object({
         username: Joi.string()

@@ -29,5 +29,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
       
-      return Competition;
+    return Competition;
 };

@@ -31,7 +31,7 @@ router.post('/register', async (req, res)=>{
     //Save the new user object, using the User model we defined in Sequelize. Return the new user ID in JSON
     User.create(newUser)
         .then(savedUser => {
-            res.status(200).json({ status: "Success", new_user_id: savedUser.id });
+            res.status(201).json({ status: "Success", new_user_id: savedUser.id });
         })
         .catch(err => res.status(500).send(err.message));
 })
