@@ -2,8 +2,6 @@
 
 Aplicación web para el control de puntuaciones de competiciones de Natación Artística y otros deportes con sistemas de puntuación similares
 
-Made with ❤️ by Josep Monclús
-
 ## Backend
 
 El backend se encuentra en la carpeta backend:
@@ -42,3 +40,4 @@ Para lenvatar el frontend en local ejecutar:
 ```sh
 npm run dev
 ```
+Made with ❤️ by Josep Monclús
