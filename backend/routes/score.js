@@ -9,7 +9,7 @@ const { scoreValidator, scoreUpdateValidator } = require('../validations/scoreVa
 const authMiddleware = require('./authMiddleware');
 
 // Get one by ID
-router.get('/:id', authMiddleware, (req, res) => {
+router.get('/:id', (req, res) => {
     const id = req.params.id;
 
     Score.findByPk(id)

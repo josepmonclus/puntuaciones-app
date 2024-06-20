@@ -4,9 +4,11 @@ const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req, res, next)=>{
     //Pull the token value from the header on any requests that come in. If the token isn't present, reject access to the route
-    const token = req.header('auth-token');
-    // const token = req.header('authorization');
-    if(!token) res.status(401).send("Access Denied");
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    // const token = req.header('auth-token');
+    
+    if(!token) res.status(401).send("Access Denied - Token not found");
 
     //Use jwt.verify() to check if the token is valid. jwt.verify() returns the content of the JWT, which we store in user
     //If token is verified, add the jwt content to the req object as req.user, so we can access the user id in each route
@@ -16,7 +18,7 @@ const authMiddleware = (req, res, next)=>{
         if(user) req.user = user;
         next();
     } catch(e){
-        res.status(400).send("Invalid credentials");
+        res.status(403).send("Invalid credentials");
     }
 }
 

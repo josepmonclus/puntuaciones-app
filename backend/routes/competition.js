@@ -9,7 +9,7 @@ const { competitionValidator } = require('../validations/competitionValidation')
 const authMiddleware = require('./authMiddleware');
 
 // Get All
-router.get('/', authMiddleware, (req, res) => {
+router.get('/', (req, res) => {
     Competition.findAll()
         .then(data => {
             res.send(data)
@@ -22,7 +22,7 @@ router.get('/', authMiddleware, (req, res) => {
 });
 
 // Get one by ID
-router.get('/:id', authMiddleware, (req, res) => {
+router.get('/:id', (req, res) => {
     const id = req.params.id;
 
     Competition.findByPk(id)
@@ -112,8 +112,8 @@ router.delete('/:id', authMiddleware, (req, res) => {
         })
 });
 
-// Get competition scores by competition Id
-router.get('/:id/scores', authMiddleware, (req, res) => {
+// Get scores by competition Id
+router.get('/:id/scores', (req, res) => {
     const id = req.params.id;
 
     Score.findAll({
