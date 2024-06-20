@@ -31,6 +31,7 @@ cd frontend
 ```
 
 Instalamos los paquetes necesarios:
+
 ```sh
 npm install
 ```
@@ -40,5 +41,6 @@ Para lenvatar el frontend en local ejecutar:
 ```sh
 npm run dev
 ```
+
 ---
 Made with ❤️ by Josep Monclús
