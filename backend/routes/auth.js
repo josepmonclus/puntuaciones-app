@@ -25,7 +25,8 @@ router.post('/register', async (req, res)=>{
     const newUser = {
         username: req.body.username,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        active: true
     }
 
     //Save the new user object, using the User model we defined in Sequelize. Return the new user ID in JSON

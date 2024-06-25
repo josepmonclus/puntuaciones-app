@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
                 model: 'competitions',
                 key: 'id'
             }
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            default: true
         }
     }, {
         // Opciones del modelo

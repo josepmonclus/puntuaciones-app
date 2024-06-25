@@ -12,8 +12,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         date: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            default: true
         }
     }, {
         // Opciones del modelo

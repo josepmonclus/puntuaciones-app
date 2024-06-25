@@ -46,7 +46,8 @@ router.post('/', authMiddleware, (req, res) => {
                 const newScore = {
                     team: req.body.team,
                     score: req.body.score,
-                    competitionId: req.body.competitionId
+                    competitionId: req.body.competitionId,
+                    active: true
                 }
 
                 Score.create(newScore)
@@ -91,13 +92,16 @@ router.put('/:id', authMiddleware, (req, res) => {
 router.delete('/:id', authMiddleware, (req, res) => {
     const id = req.params.id;
 
-    Score.destroy({
-        where: {id: id}
+    Score.update(
+        {
+            active: false
+        }, {
+            where: {id: id}
     })
         .then(num => {
-            if(num == 1) {
+            if (num == 1) {
                 res.send({
-                    message: "Score was deleted successfully!"
+                    message: "Score was updated successfully."
                 });
             } else {
                 res.status(404).send({
@@ -107,7 +111,7 @@ router.delete('/:id', authMiddleware, (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message:  "Error deleting Score with id=" + id
+                message:  "Error updating Score with id=" + id
             });
         })
 });

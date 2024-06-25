@@ -10,7 +10,10 @@ const authMiddleware = require('./authMiddleware');
 
 // Get All
 router.get('/', (req, res) => {
-    Competition.findAll()
+    Competition.findAll({
+        where: {active: true},
+        order: [['date', 'DESC']]
+    })
         .then(data => {
             res.send(data)
         })
@@ -49,7 +52,8 @@ router.post('/', authMiddleware, (req, res) => {
 
     const newCompetition = {
         name: req.body.name,
-        date: req.body.date
+        date: req.body.date,
+        active: true
     }
 
     Competition.create(newCompetition)
@@ -91,13 +95,16 @@ router.put('/:id', authMiddleware, (req, res) => {
 router.delete('/:id', authMiddleware, (req, res) => {
     const id = req.params.id;
 
-    Competition.destroy({
-        where: { id: id }
+    Competition.update(
+        {
+            active: false
+        }, {
+            where: {id: id}
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Competition was deleted successfully!"
+                    message: "Competition was updated successfully."
                 });
             } else {
                 res.status(404).send({
@@ -107,9 +114,9 @@ router.delete('/:id', authMiddleware, (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message:  "Error deleting Competition with id=" + id
+                message:  "Error updating Competition with id=" + id
             });
-        })
+        });
 });
 
 // Get scores by competition Id
@@ -117,7 +124,8 @@ router.get('/:id/scores', (req, res) => {
     const id = req.params.id;
 
     Score.findAll({
-        where: { competitionId: id}
+        where: { competitionId: id, active: true},
+        order: [['score', 'DESC']]
     })
         .then(data => {
             res.send(data)
