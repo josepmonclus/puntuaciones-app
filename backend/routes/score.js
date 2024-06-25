@@ -101,7 +101,7 @@ router.delete('/:id', authMiddleware, (req, res) => {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Score was updated successfully."
+                    message: "Score was deleted successfully."
                 });
             } else {
                 res.status(404).send({
@@ -111,7 +111,7 @@ router.delete('/:id', authMiddleware, (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message:  "Error updating Score with id=" + id
+                message:  "Error deleting Score with id=" + id
             });
         })
 });

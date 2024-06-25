@@ -5,11 +5,17 @@
         </div>
         <div class="w-auto flex align-middle">
             <div class="">
-                <div class="h-auto flex cursor-pointer border rounded px-2 py-2
+                <div @click="refreshCompetitions" class="h-auto flex cursor-pointer border rounded px-2 py-2
                         text-meddark hover:text-dark border-meddark hover:border-dark
                         dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
-                    <Icon name="heroicons-outline:plus-circle" class=" text-2xl"/>
-                    <span class="text-l ml-2">Añadir</span>
+                    <Icon name="heroicons-outline:arrow-path" class="text-2xl"/>
+                </div>
+            </div>
+            <div class="">
+                <div v-if="authStore.isAuthenticated" class="h-auto flex cursor-pointer border rounded px-2 py-2 ml-2
+                        text-meddark hover:text-dark border-meddark hover:border-dark
+                        dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
+                    <Icon name="heroicons-outline:plus" class="text-2xl"/>
                 </div>
             </div>
         </div>
@@ -22,8 +28,8 @@
                 <thead>
                     <tr>
                         <th class="py-2 px-4 border-b-2 border-dark dark:border-light text-left">Nombre</th>
-                        <th class="py-2 px-4 border-b-2 border-dark dark:border-light text-center"></th>
                         <th class="py-2 px-4 border-b-2 border-dark dark:border-light text-center">Fecha</th>
+                        <th class="py-2 px-4 border-b-2 border-dark dark:border-light text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,11 +39,11 @@
                         </td>
                         <td class="py-2 px-4 border-b border-dark dark:border-light w-auto text-center">{{ $formatDate(competition.date) }}</td>
                         <td class="py-2 px-4 border-b border-dark dark:border-light w-auto text-center">
-                            <div class="flex items-center justify-center">
+                            <div class="w-full flex text-center items-center justify-center">
                                 <NuxtLink :to="`/competitions/${competition.id}`">
-                                    <Icon name="heroicons-outline:eye" class="cursor-pointer text-xl mr-2 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light"/>
+                                    <Icon name="heroicons-outline:eye" class="cursor-pointer text-xl mx-1 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light"/>
                                 </NuxtLink>
-                                <Icon name="heroicons-outline:pencil-square" class="cursor-pointer text-xl mr-2 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light" 
+                                <Icon v-if="authStore.isAuthenticated" name="heroicons-outline:pencil-square" class="cursor-pointer text-xl mx-1 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light" 
                                     @click="editCompetition(competition.id)"/>
                             </div>
                         </td>
@@ -52,27 +58,34 @@
 </template>
 
 <script setup>
-    import { onMounted } from 'vue'
-    import { useRouter } from 'vue-router';
-    import { useCompetitionsStore } from '~/stores/competitions'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router';
+import { useCompetitionsStore } from '~/stores/competitions'
+import { useAuthStore } from '@/stores/auth';
 
-    const router = useRouter();
-    const competitionsStore = useCompetitionsStore()
+const router = useRouter();
+const competitionsStore = useCompetitionsStore()
+const authStore = useAuthStore();
 
-    const competitions = computed(() => competitionsStore.competitions)
-    const loading = computed(() => competitionsStore.loading)
-    const error = computed(() => competitionsStore.error)
+const competitions = computed(() => competitionsStore.competitions)
+const loading = computed(() => competitionsStore.loading)
+const error = computed(() => competitionsStore.error)
 
-    onMounted(() => {
-        competitionsStore.fetchCompetitions()
-    })
+onMounted(async () => {
+    await authStore.checkAuth(router);
+    await competitionsStore.fetchCompetitions()
+})
 
-    const viewCompetition = (id) => {
-        router.push(`/competition/${id}`);
-    };
+const viewCompetition = (id) => {
+    router.push(`/competition/${id}`);
+};
 
-    const editCompetition = (id) => {
-        // router.push(`/competitions/${id}`);
-        console.log('edit id: ' + id)
-    };
+const editCompetition = (id) => {
+    // router.push(`/competitions/${id}`);
+    console.log('edit id: ' + id)
+};
+
+const refreshCompetitions = async () => {
+    await competitionsStore.fetchCompetitions();
+};
 </script>

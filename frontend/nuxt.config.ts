@@ -12,9 +12,15 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'nuxt-icon',
         'nuxt-security',
+        ['@nuxtjs/google-adsense', {
+            id: 'ca-pub-4117247409305175', // replace "#" with "2112345678904791",
+            // onPageLoad: true, // this is required to be true for our ads to show in our 
+            // overlayBottom: true,
+            test: true // if we are using development env. the test variable will help us to show where your ads will appear
+        }],
     ],
     routeRules: {
-        '/api/**': { proxy: 'http://localhost:3000/api/**' },
+        '/api/**': { proxy: 'http://192.168.1.132:3000/api/**' },
     },
     colorMode: {
         classSuffix: ''

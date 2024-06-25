@@ -51,16 +51,18 @@ router.post('/login', async (req, res)=>{
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if(!validPassword) return res.status(400).send("Invalid password");
 
-    console.log(process.env.TOKEN_SECRET)
-
     //Create + Assign a JWT token with a 10 minute expiry
     const token = jwt.sign({ 
         id: user.id,
-        exp: Math.floor(Date.now() / 1000) + (60 * 10) 
+        username: user.username,
+        exp: Math.floor(Date.now() / 1000) + (60 * 60) // now in miliseconds / 1000 + (60 seconds * 60 minutes) -> 1h session exp
     }, process.env.TOKEN_SECRET);
 
     //Return the token in a header called 'auth-token'. Add auth-token to any future requests to protected routes
-    res.header("auth-token", token).send(token);
+    res.header("auth-token", token)
+        .send({
+            "token": token
+        });
 })
 
 
