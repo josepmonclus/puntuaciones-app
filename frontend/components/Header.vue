@@ -1,5 +1,6 @@
 <template>
-    <div class="container flex items-center justify-between w-auto mx-auto px-4">
+    <header>
+        <div class="container flex items-center justify-between w-auto mx-auto px-4">
             <div class="flex items-center flex-shrink-0 my-5">
                 <NuxtLink to="/">
                     <span class="font-semibold text-3xl">
@@ -14,4 +15,5 @@
                 <ColorButton />
             </div>
         </div>
+    </header>
 </template>

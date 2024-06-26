@@ -2,7 +2,7 @@
     <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center bg-dark dark:bg-meddark bg-opacity-50 dark:bg-opacity-50">
         <div class="bg-light dark:bg-dark p-8 rounded shadow-lg">
             <h2 class="text-2xl mb-4 font-bold">Nueva puntuación</h2>
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="submitForm" autocomplete="off">
                 <div class="mb-4">
                     <label class="block text-sm font-bold mb-2" for="team">Nombre del Club</label>
                     <input v-model="team" id="team" type="text" 
@@ -10,7 +10,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-bold mb-2" for="score">Puntuación</label>
-                    <input v-model="score" id="score" type="number" min="0" value="0" step="any" 
+                    <input v-model="score" id="score" type="number" min="0" step="any" 
                         class="shadow bg-light border border-meddark focus:border-dark rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline dark:text-dark" required />
                 </div>
                 <div class="flex items-center justify-between">

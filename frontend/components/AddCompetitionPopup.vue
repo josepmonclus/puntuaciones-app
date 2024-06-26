@@ -2,7 +2,7 @@
     <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center bg-dark dark:bg-meddark bg-opacity-50 dark:bg-opacity-50">
         <div class="bg-light dark:bg-dark p-8 rounded shadow-lg">
             <h2 class="text-2xl mb-4 font-bold">Nueva competición</h2>
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="submitForm" autocomplete="off">
                 <div class="mb-4">
                     <label class="block text-sm font-bold mb-2" for="name">Nombre de la Competición</label>
                     <input v-model="name" id="name" type="text" 

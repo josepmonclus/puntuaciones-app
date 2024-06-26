@@ -6,18 +6,18 @@
             <table class="min-w-full">
                 <thead>
                     <tr>
-                        <th class="py-2 px-4 border-b-2 border-dark dark:border-light text-center"></th>
-                        <th class="py-2 px-4 border-b-2 border-dark dark:border-light text-left">Club / Equipo</th>
-                        <th class="py-2 px-4 border-b-2 border-dark dark:border-light text-center">Puntuación</th>
-                        <th v-if="authStore.isAuthenticated" class="py-2 px-4 border-b-2 border-dark dark:border-light text-center"></th>
+                        <th class="py-2 px-1 border-b-2 border-dark dark:border-light text-center"></th>
+                        <th class="py-2 px-2 border-b-2 border-dark dark:border-light text-left">Club / Equipo</th>
+                        <th class="py-2 px-2 border-b-2 border-dark dark:border-light text-center">Puntos</th>
+                        <th v-if="authStore.isAuthenticated" class="py-2 px-1 border-b-2 border-dark dark:border-light text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(score, i) in scores" :key="score.id" :class="{'text-xl font-bold': i == 0, 'font-semibold': i == 1 || i == 2}">
-                        <td class="py-2 px-4 border-b border-dark dark:border-light w-auto text-center" :class="{'text-2xl': i == 0, 'text-xl': i == 1 || i == 2}">{{ parsePosition(i) }}</td>
-                        <td class="py-2 px-4 border-b border-dark dark:border-light w-full text-left">{{ score.team }}</td>
-                        <td class="py-2 px-4 border-b border-dark dark:border-light w-auto text-center">{{ formatScore(score.score) }}</td>
-                        <td v-if="authStore.isAuthenticated" class="py-2 px-4 border-b border-dark dark:border-light w-auto text-center">
+                        <td class="py-2 px-1 border-b border-dark dark:border-light w-auto text-center" :class="{'text-2xl': i == 0, 'text-xl': i == 1 || i == 2}">{{ parsePosition(i) }}</td>
+                        <td class="py-2 px-2 border-b border-dark dark:border-light w-full text-left">{{ score.team }}</td>
+                        <td class="py-2 px-2 border-b border-dark dark:border-light w-auto text-center">{{ formatScore(score.score) }}</td>
+                        <td v-if="authStore.isAuthenticated" class="py-2 px-1 border-b border-dark dark:border-light w-auto text-center">
                             <div class="flex items-center justify-center">
                                 <Icon v-if="authStore.isAuthenticated" name="heroicons-outline:pencil-square" @click="openEditPopup(score)"
                                         class="cursor-pointer text-xl mx-1 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light"/>

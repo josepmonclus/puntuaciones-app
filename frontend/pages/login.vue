@@ -9,7 +9,7 @@
     </div>
     <div v-else class="flex flex-col items-center justify-center py-10">
       <h1 class="text-3xl font-bold mb-6">Iniciar Sesión</h1>
-      <form @submit.prevent="handleLogin" class="w-full flex flex-col max-w-sm">
+      <form @submit.prevent="handleLogin" class="w-full flex flex-col max-w-sm" autocomplete="off">
         <div class="mb-4">
           <label class="block text-sm font-bold mb-2" for="email">Correo Electrónico</label>
           <input v-model="email" type="email" id="email" 
@@ -17,7 +17,7 @@
         </div>
         <div class="mb-6">
           <label class="block text-sm font-bold mb-2" for="password">Contraseña</label>
-          <input v-model="password" type="password" id="password" 
+          <input v-model="password" type="password" id="password" autocomplete="off"
                 class="shadow bg-light border border-meddark focus:border-dark rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline dark:text-dark" required>
         </div>
         <div class="w-full flex items-center justify-center">
