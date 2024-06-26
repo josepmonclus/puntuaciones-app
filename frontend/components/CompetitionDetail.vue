@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <ScoresTable :competition="competition"/>
+        <ScoresTable :competition="competition" :competitionId="competitionId"/>
     </div>
     <AddScorePopup :isOpen="isAddPopupOpen" :competition="competition" @close="closePopup" @saved="refreshScores" />
 </template>
@@ -46,16 +46,15 @@ const loading = computed(() => competitionsStore.loading)
 const error = computed(() => competitionsStore.error)
 
 const isAddPopupOpen = ref(false);
+const competitionId = ref(router.params.id);
 
 onMounted(async () => {
     await authStore.checkAuth(router);
-    const competitionId = router.params.id;
-    await competitionsStore.fetchCompetition(competitionId)
+    await competitionsStore.fetchCompetition(competitionId.value)
 })
 
 const refreshScores = async () => {
-    const competitionId = router.params.id;
-    await scoreStore.fetchScores(competitionId)
+    await scoreStore.fetchScores(competitionId.value)
 };
 
 const openPopup = () => {

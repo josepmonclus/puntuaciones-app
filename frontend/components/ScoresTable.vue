@@ -57,6 +57,10 @@ const currentScore = ref(null);
 const isDeletePopupOpen = ref(false);
 
 const props = defineProps({
+    competitionId : {
+        type: String,
+        required: true
+    },
     competition: {
         type: Object,
         required: true
@@ -65,7 +69,7 @@ const props = defineProps({
 
 onMounted(async () => {
     await authStore.checkAuth(router);
-    await scoreStore.fetchScores(props.competition.id)
+    await refreshScores()
 })
 
 const openEditPopup = (score) => {
@@ -89,7 +93,7 @@ const closeDeletePopup = () => {
 };
 
 const refreshScores = async () => {
-    await scoreStore.fetchScores(props.competition.id)
+    await scoreStore.fetchScores(props.competitionId)
 }
 
 const formatScore = (score) => {
