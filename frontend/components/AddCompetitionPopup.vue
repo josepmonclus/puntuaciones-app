@@ -16,14 +16,14 @@
                 <div class="flex items-center justify-between">
                     <button type="submit" 
                             class="focus:outline-none focus:shadow-outline py-2 px-4 border rounded 
-                                text-meddark hover:text-dark border-meddark hover:border-dark
-                                dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
+                                text-meddark hover:text-dark border-meddark hover:border-dark hover:bg-medlight hover:bg-opacity-50
+                dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light dark:hover:bg-meddark dark:hover:bg-opacity-50">
                         Guardar
                     </button>
                     <button @click="closePopup" type="button" 
                             class="focus:outline-none focus:shadow-outline py-2 px-4 border rounded 
-                                text-meddark hover:text-dark border-meddark hover:border-dark
-                                dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
+                                text-meddark hover:text-dark border-meddark hover:border-dark hover:bg-medlight hover:bg-opacity-50
+                dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light dark:hover:bg-meddark dark:hover:bg-opacity-50">
                         Cancelar
                     </button>
                 </div>

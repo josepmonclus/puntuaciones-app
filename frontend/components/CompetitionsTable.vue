@@ -6,15 +6,15 @@
         <div class="w-auto flex align-middle">
             <div class="">
                 <div @click="refreshCompetitions" class="h-auto flex cursor-pointer border rounded px-2 py-2
-                        text-meddark hover:text-dark border-meddark hover:border-dark
-                        dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
+                        text-meddark hover:text-dark border-meddark hover:border-dark hover:bg-medlight hover:bg-opacity-50
+                dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light dark:hover:bg-meddark dark:hover:bg-opacity-50">
                     <Icon name="heroicons-outline:arrow-path" class="text-2xl"/>
                 </div>
             </div>
             <div class="">
                 <div v-if="authStore.isAuthenticated" @click="openPopup" class="h-auto flex cursor-pointer border rounded px-2 py-2 ml-2
-                        text-meddark hover:text-dark border-meddark hover:border-dark
-                        dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
+                        text-meddark hover:text-dark border-meddark hover:border-dark hover:bg-medlight hover:bg-opacity-50
+                dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light dark:hover:bg-meddark dark:hover:bg-opacity-50">
                     <Icon name="heroicons-outline:plus" class="text-2xl"/>
                 </div>
             </div>

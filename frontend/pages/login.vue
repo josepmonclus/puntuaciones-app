@@ -2,8 +2,8 @@
     <div v-if="authStore.isAuthenticated" class="flex flex-col items-center justify-center py-10">
         <h1 class="text-3xl font-bold mb-10">Bienvenido, {{ authStore.username }}</h1>
         <button @click="handleLogout" class="focus:outline-none focus:shadow-outline py-2 px-4 border rounded 
-                        text-meddark hover:text-dark border-meddark hover:border-dark
-                        dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
+                        text-meddark hover:text-dark border-meddark hover:border-dark hover:bg-medlight hover:bg-opacity-50
+                        dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light dark:hover:bg-meddark dark:hover:bg-opacity-50">
             Cerrar Sesión
         </button>
     </div>
@@ -23,8 +23,8 @@
         <div class="w-full flex items-center justify-center">
           <button type="submit" 
                 class="focus:outline-none focus:shadow-outline py-2 px-4 border rounded 
-                        text-meddark hover:text-dark border-meddark hover:border-dark
-                        dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
+                        text-meddark hover:text-dark border-meddark hover:border-dark hover:bg-medlight hover:bg-opacity-50
+                        dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light dark:hover:bg-meddark dark:hover:bg-opacity-50">
             Iniciar Sesión
           </button>
         </div>
