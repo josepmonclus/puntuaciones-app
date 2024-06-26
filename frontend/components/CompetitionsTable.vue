@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="">
-                <div v-if="authStore.isAuthenticated" class="h-auto flex cursor-pointer border rounded px-2 py-2 ml-2
+                <div v-if="authStore.isAuthenticated" @click="openPopup" class="h-auto flex cursor-pointer border rounded px-2 py-2 ml-2
                         text-meddark hover:text-dark border-meddark hover:border-dark
                         dark:text-medlight dark:hover:text-light dark:border-medlight dark:hover:border-light">
                     <Icon name="heroicons-outline:plus" class="text-2xl"/>
@@ -43,8 +43,8 @@
                                 <NuxtLink :to="`/competitions/${competition.id}`">
                                     <Icon name="heroicons-outline:eye" class="cursor-pointer text-xl mx-1 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light"/>
                                 </NuxtLink>
-                                <Icon v-if="authStore.isAuthenticated" name="heroicons-outline:pencil-square" class="cursor-pointer text-xl mx-1 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light" 
-                                    @click="editCompetition(competition.id)"/>
+                                <Icon v-if="authStore.isAuthenticated" name="heroicons-outline:pencil-square" @click="openEditPopup(competition)"
+                                        class="cursor-pointer text-xl mx-1 text-meddark hover:text-dark dark:text-medlight dark:hover:text-light" />
                             </div>
                         </td>
                     </tr>
@@ -55,6 +55,8 @@
             <p class="mt-4 text-l font-bold">Aún no existen competiciones</p>
         </div>
     </div>
+    <AddCompetitionPopup :isOpen="isAddPopupOpen" @close="closePopup" @saved="refreshCompetitions" />
+    <EditCompetitionPopup :isOpen="isEditPopupOpen" :competition="currentCompetition" @close="closeEditPopup" @saved="refreshCompetitions" />
 </template>
 
 <script setup>
@@ -71,21 +73,35 @@ const competitions = computed(() => competitionsStore.competitions)
 const loading = computed(() => competitionsStore.loading)
 const error = computed(() => competitionsStore.error)
 
+const isAddPopupOpen = ref(false);
+
+const isEditPopupOpen = ref(false);
+const currentCompetition = ref(null);
+
 onMounted(async () => {
     await authStore.checkAuth(router);
     await competitionsStore.fetchCompetitions()
-})
-
-const viewCompetition = (id) => {
-    router.push(`/competition/${id}`);
-};
-
-const editCompetition = (id) => {
-    // router.push(`/competitions/${id}`);
-    console.log('edit id: ' + id)
-};
+});
 
 const refreshCompetitions = async () => {
     await competitionsStore.fetchCompetitions();
+};
+
+const openPopup = () => {
+    isAddPopupOpen.value = true;
+};
+
+const closePopup = () => {
+    isAddPopupOpen.value = false;
+};
+
+const openEditPopup = (competition) => {
+    currentCompetition.value = competition;
+    isEditPopupOpen.value = true;
+}
+
+const closeEditPopup = () => {
+    currentCompetition.value = null;
+    isEditPopupOpen.value = false;
 };
 </script>

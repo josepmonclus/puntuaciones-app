@@ -35,6 +35,48 @@ export const useCompetitionsStore = defineStore('competitions', {
             } finally {
                 this.loading = false
             }
+        },
+        async addCompetition(name, date) {
+            const authStore = useAuthStore();
+            const token = authStore.getToken;
+
+            try {
+                const response = await $fetch('api/competition', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ name, date })
+                });
+
+                if (!response.new_competition_id) {
+                    throw new Error('Failed to add competition');
+                }
+            } catch (error) {
+                console.error('Error adding competition:', error);
+            }
+        },
+        async updateCompetition(competitionId, name, date) {
+            const authStore = useAuthStore();
+            const token = authStore.getToken;
+
+            try {
+                const response = await $fetch(`api/competition/${competitionId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ name, date })
+                });
+
+                if (!response) {
+                    throw new Error('Failed to edit competition');
+                  }
+            } catch (error) {
+                console.error('Error updating competition:', error);
+            }
         }
     }
 })
