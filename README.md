@@ -19,7 +19,14 @@ npm install
 Para levantar el backend ejecutar:
 
 ```sh
-node start
+node index.js
+```
+
+### Generar SECRET_KEY para JWT
+
+```sh
+node
+require('crypto').randomBytes(64).toString('hex')
 ```
 
 ## Frontend

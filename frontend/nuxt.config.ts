@@ -20,7 +20,8 @@ export default defineNuxtConfig({
         // }],
     ],
     routeRules: {
-        '/api/**': { proxy: `http://${process.env.API_URL || locahost}:${process.env.API_PORT || 3000}/api/**` },
+        // '/api/**': { proxy: `${process.env.API_HTTP_HTTPS || 'http'}://${process.env.API_URL || 'localhost'}:${process.env.API_PORT == '80' ? '' : process.env.API_URL || 3000}/api/**` },
+        '/api/**': { proxy: `${process.env.API_URL || 'http://localhost:3000'}/api/**` },
     },
     colorMode: {
         classSuffix: ''
