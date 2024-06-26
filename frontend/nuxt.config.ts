@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devServer: {
-        port: parseInt(process.env.PORT || '3000')  // Cambia esto a cualquier puerto disponible, por ejemplo, 3001
+        port: parseInt(process.env.PORT || '3001')  // Cambia esto a cualquier puerto disponible, por ejemplo, 3001
     },
     devtools: { 
         enabled: false 
@@ -20,7 +20,7 @@ export default defineNuxtConfig({
         // }],
     ],
     routeRules: {
-        '/api/**': { proxy: `http://${process.env.API_URL}:${process.env.API_PORT}/api/**` },
+        '/api/**': { proxy: `http://${process.env.API_URL || locahost}:${process.env.API_PORT || 3000}/api/**` },
     },
     colorMode: {
         classSuffix: ''
