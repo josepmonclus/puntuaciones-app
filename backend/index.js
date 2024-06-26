@@ -39,7 +39,7 @@ db.sequelize.sync()
 .then(() => {
     console.log('Database synced!');
     app.listen(port, () => {
-        console.log('Server is running on http://localhost:3000');
+        console.log(`Server is running on http://localhost:${port}`);
     });
 })
 .catch(err => {
