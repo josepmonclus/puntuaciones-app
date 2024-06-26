@@ -8,3 +8,11 @@
   </NuxtLayout>
 </template>
 
+<script setup lang="ts">
+useHead({
+  title: 'puntuaciones.com',
+  meta: [
+    { name: 'description', content: 'Site para el registro de puntuaciones de competiciones de Natación Artística y otros deportes.' }
+  ]
+})
+</script>
