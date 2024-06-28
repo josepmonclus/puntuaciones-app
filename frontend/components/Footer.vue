@@ -1,7 +1,6 @@
 <template>
-    <!-- <Adsbygoogle ad-slot="4041193804" /> -->
     <footer class="fixed bottom-0 left-0 w-full bg-light dark:bg-dark
-                border-t border-dark dark:border-light py-3 text-sm">
+                border-t border-dark dark:border-light text-sm py-2">
         <div class="container mx-auto flex items-center justify-between px-4">
             © 2024 by Josep Monclús
             
